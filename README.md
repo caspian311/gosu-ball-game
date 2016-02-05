@@ -1,6 +1,6 @@
-##GOSU Experimentations##
+##GOSU Ball Game##
 
-Just a learning space for me and my gosu codes.
+A game of bouncing, shooting balls...
 
 
 ###Setup###
