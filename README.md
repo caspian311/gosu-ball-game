@@ -10,5 +10,5 @@ Just a learning space for me and my gosu codes.
     
 ###Running###
 
-    $ ./go.sh
+    $ ./go
    
