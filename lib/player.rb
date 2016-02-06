@@ -2,6 +2,7 @@ require 'gosu'
 
 class Player
   attr_reader :x
+  attr_reader :y
 
   MaxSpeed = 4
   Size = 25

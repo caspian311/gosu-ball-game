@@ -19,11 +19,17 @@ class Enemies
       baddie.update
     end
 
-    all_the_baddies.delete_if { |baddie| baddie.off_screen? }
+    all_the_baddies.delete_if { |baddie| baddie.off_screen? or baddie.dying? }
   end
 
   def draw
     all_the_baddies.each { |baddie| baddie.draw }
+  end
+
+  def each
+    @all_the_baddies.each do |baddie|
+      yield baddie unless baddie.dying?
+    end
   end
 
   private
