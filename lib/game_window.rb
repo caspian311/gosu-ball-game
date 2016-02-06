@@ -13,6 +13,8 @@ class GameWindow < Gosu::Window
                           @ground
     @enemies = Enemies.new @ground
     @shots = Shots.new @player
+
+    @kill_monitor = KillMonitor.new
   end
 
   def update
@@ -24,6 +26,8 @@ class GameWindow < Gosu::Window
 
     @player.update
     @shots.update
+
+    @kill_monitor.update @enemies, @shots
   end
 
   def draw
