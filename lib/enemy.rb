@@ -38,9 +38,3 @@ class Enemy < Player
   end
 end
 
-class Range
-  def overlaps?(other)
-    raise ArgumentError, 'value must be a range' unless other.kind_of?(Range)
-    (to_a & other.to_a).any?
-  end
-end
