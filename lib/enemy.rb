@@ -22,6 +22,7 @@ class Enemy < Player
 
   def kill
     @dying = true
+    Media::EnemyDeath.play
   end
 
   def off_screen?
