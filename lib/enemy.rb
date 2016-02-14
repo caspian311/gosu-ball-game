@@ -1,5 +1,4 @@
 require_relative './player'
-require 'byebug'
 
 class Enemy < Player
   OffscreenBuffer = 5

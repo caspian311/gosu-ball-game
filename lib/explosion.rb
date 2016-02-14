@@ -1,5 +1,5 @@
 class Explosion
-  FRAME_DELAY = 50 # ms
+  FRAME_DELAY = 50
 
   def initialize(animation, sound, x, y)
     @animation = animation
