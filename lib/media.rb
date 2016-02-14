@@ -6,4 +6,5 @@ module Media
 
   Player = Gosu::Image.new("media/player.bmp")
   PlayerShadow = Gosu::Image.new("media/shadow.bmp")
+  DeathAnimation = Gosu::Image::load_tiles("media/death.bmp", 25, 25)
 end
