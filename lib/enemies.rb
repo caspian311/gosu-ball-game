@@ -19,7 +19,7 @@ class Enemies
       baddie.update
     end
 
-    all_the_baddies.delete_if { |baddie| baddie.off_screen? or baddie.dying? }
+    all_the_baddies.delete_if { |baddie| baddie.off_screen? or baddie.dead? }
   end
 
   def draw

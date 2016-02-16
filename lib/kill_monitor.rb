@@ -5,7 +5,10 @@ class KillMonitor
   def update(enemies, shots)
     enemies.each do |enemy|
       shots.each do |shot|
-        enemy.kill if enemy.hit? shot
+        if enemy.hit? shot 
+          enemy.kill 
+          shot.hit_something
+        end
       end
     end
   end

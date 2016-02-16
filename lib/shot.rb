@@ -9,6 +9,7 @@ class Shot
     @x = x
     @initial_x = x
     @y = y
+    @hit = false
   end
 
   def draw
@@ -34,6 +35,18 @@ class Shot
 
   def y_offset
     Height / 2
+  end
+
+  def hit_something
+    @hit = true
+  end
+
+  def hit_something?
+    @hit
+  end
+
+  def off_screen
+    x > Consts::WindowWidth
   end
 end
 

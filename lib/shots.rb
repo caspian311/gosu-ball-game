@@ -21,7 +21,7 @@ class Shots
     shots.each do |shot|
       shot.x += ShotSpeed
     end
-    shots.delete_if { |shot| shot.x > Consts::WindowWidth }
+    shots.delete_if { |shot| shot.off_screen or shot.hit_something? }
   end
 
   def each
