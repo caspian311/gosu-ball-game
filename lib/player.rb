@@ -5,6 +5,10 @@ class Player
   include CollisionDetection
   include Position
 
+  attr_accessor :dying, :dead
+  alias :dying? :dying
+  alias :dead? :dead
+
   Size = 25
 
   MaxSpeed = 4
@@ -21,6 +25,7 @@ class Player
     @ground = ground
 
     @x_velocity = @y_velocity = 0.0
+    @dying = false
   end
 
   def width
@@ -51,13 +56,27 @@ class Player
   end
 
   def update
-    update_x
-    update_y
+    unless dying?
+      update_x
+      update_y
+    else
+      @explostion.update
+      @dead = @explostion.done?
+    end
   end
 
   def draw
-    draw_player_image
-    Media::PlayerShadow.draw @x, y_min + ShadowOffset, ZOrder::Shadow
+    unless dying?
+      draw_player_image
+      Media::PlayerShadow.draw @x, y_min + ShadowOffset, ZOrder::Shadow
+    else
+      @explostion.draw
+    end
+  end
+
+  def kill
+    @dying = true
+    @explostion = Explosion.new Media::DeathAnimation, Media::EnemyDeath, x, y
   end
 
   private
