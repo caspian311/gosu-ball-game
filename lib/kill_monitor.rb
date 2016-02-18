@@ -7,7 +7,7 @@ class KillMonitor
           shot.hit_something
         end
       end
-      player.kill if enemy.hit? player
+      player.kill if enemy.hit? player and !player.dying?
     end
   end
 end
