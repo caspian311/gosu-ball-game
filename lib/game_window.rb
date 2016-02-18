@@ -18,16 +18,18 @@ class GameWindow < Gosu::Window
   end
 
   def update
-    @player.go_left if left_pressed?
-    @player.go_right if right_pressed?
-    @player.jump if jump_pressed?
-    @enemies.update
-    @shots.shoot if shoot_pressed?
+    unless @player.dead?
+      @player.go_left if left_pressed?
+      @player.go_right if right_pressed?
+      @player.jump if jump_pressed?
+      @enemies.update
+      @shots.shoot if shoot_pressed?
 
-    @player.update
-    @shots.update
+      @player.update
+      @shots.update
 
-    @kill_monitor.update @enemies, @shots
+      @kill_monitor.update @enemies, @shots, @player
+    end
   end
 
   def draw

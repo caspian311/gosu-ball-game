@@ -1,14 +1,17 @@
+require_relative './position'
+
 class Shot
-  attr_accessor :x
-  attr_reader :y, :initial_x
+  include Position
+
+  attr_reader :initial_x
 
   Length = 30
   Height = 5
 
-  def initialize(x, y)
-    @x = x
-    @initial_x = x
-    @y = y
+  def initialize(point)
+    @x = point.x
+    @initial_x = point.x
+    @y = point.y
     @hit = false
   end
 
@@ -25,12 +28,12 @@ class Shot
       ZOrder::Shot
   end
 
-  def top_left
-    return x, y - y_offset
+  def width
+    Length
   end
 
-  def bottom_right
-    return x + Length, y + y_offset
+  def height
+    Height
   end
 
   def y_offset

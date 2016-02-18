@@ -14,7 +14,7 @@ class Shots
     return if shooting?
 
     Media::Pew.play
-    shots << Shot.new(player.current_position[0], player.current_position[1])
+    shots << Shot.new(player.firing_position)
   end
 
   def update

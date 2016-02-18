@@ -1,14 +1,22 @@
 require 'gosu'
+require_relative './position'
 
 class Player
-  attr_reader :x
-  attr_reader :y
+  include CollisionDetection
+  include Position
+
+  attr_accessor :dying, :dead
+  alias :dying? :dying
+  alias :dead? :dead
+
+  Size = 25
 
   MaxSpeed = 4
-  Size = 25
-  ShadowOffset = 20
-  MaxLeft = 0
   JumpForce = 7
+
+  ShadowOffset = 20
+
+  MaxLeft = 0
   MaxRight = Consts::WindowWidth - Size
 
   def initialize(initial_x, initial_y, ground)
@@ -17,10 +25,19 @@ class Player
     @ground = ground
 
     @x_velocity = @y_velocity = 0.0
+    @dying = false
   end
 
-  def current_position
-    return [@x + Size / 2, @y + Size / 2]
+  def width
+    Size
+  end
+
+  def height
+    width
+  end
+
+  def firing_position
+    Point.new bottom_right.x, top_right.y + height / 2
   end
 
   def go_left
@@ -39,13 +56,27 @@ class Player
   end
 
   def update
-    update_x
-    update_y
+    unless dying?
+      update_x
+      update_y
+    else
+      @explostion.update
+      @dead = @explostion.done?
+    end
   end
 
   def draw
-    draw_player_image
-    Media::PlayerShadow.draw @x, y_min + ShadowOffset, ZOrder::Shadow
+    unless dying?
+      draw_player_image
+      Media::PlayerShadow.draw @x, y_min + ShadowOffset, ZOrder::Shadow
+    else
+      @explostion.draw
+    end
+  end
+
+  def kill
+    @dying = true
+    @explostion = Explosion.new Media::DeathAnimation, Media::EnemyDeath, x, y
   end
 
   private
@@ -88,7 +119,7 @@ class Player
   end
 
   def not_in_a_wall(attempted_x)
-    @y <= @ground.level_at(attempted_x) and @y <= @ground.level_at(attempted_x + Size)
+    @y <= @ground.level_at(attempted_x) and @y <= @ground.level_at(attempted_x + width)
   end
 
   def at_ground_level?
@@ -96,6 +127,6 @@ class Player
   end
 
   def y_min
-    [@ground.level_at(@x + Size), @ground.level_at(@x)].min
+    [@ground.level_at(@x + width), @ground.level_at(@x)].min
   end
 end
