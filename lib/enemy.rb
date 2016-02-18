@@ -1,6 +1,8 @@
 require_relative './player'
 
 class Enemy < Player
+  include CollisionDetection
+
   OffscreenBuffer = 5
 
   attr_accessor :dying, :dead
@@ -31,16 +33,6 @@ class Enemy < Player
       @explostion.update
       @dead = @explostion.done?
     end
-  end
-
-  def hit?(shot)
-    enemy_x_range = x.to_i...(x.to_i + Size)
-    enemy_y_range = y.to_i...(y.to_i + Size)
-
-    shot_x_range = shot.x.to_i...(shot.x.to_i + Shot::Length)
-    shot_y_range = (shot.y.to_i - shot.y_offset.to_i)...(shot.y.to_i + shot.y_offset.to_i)
-
-    enemy_x_range.overlaps? shot_x_range and enemy_y_range.overlaps? shot_y_range
   end
 
   def kill

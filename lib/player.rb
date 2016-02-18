@@ -1,14 +1,17 @@
 require 'gosu'
+require_relative './position'
 
 class Player
-  attr_reader :x
-  attr_reader :y
+  include Position
+
+  Size = 25
 
   MaxSpeed = 4
-  Size = 25
-  ShadowOffset = 20
-  MaxLeft = 0
   JumpForce = 7
+
+  ShadowOffset = 20
+
+  MaxLeft = 0
   MaxRight = Consts::WindowWidth - Size
 
   def initialize(initial_x, initial_y, ground)
@@ -17,6 +20,14 @@ class Player
     @ground = ground
 
     @x_velocity = @y_velocity = 0.0
+  end
+
+  def width
+    Size
+  end
+
+  def height
+    width
   end
 
   def current_position
@@ -88,7 +99,7 @@ class Player
   end
 
   def not_in_a_wall(attempted_x)
-    @y <= @ground.level_at(attempted_x) and @y <= @ground.level_at(attempted_x + Size)
+    @y <= @ground.level_at(attempted_x) and @y <= @ground.level_at(attempted_x + width)
   end
 
   def at_ground_level?
@@ -96,6 +107,6 @@ class Player
   end
 
   def y_min
-    [@ground.level_at(@x + Size), @ground.level_at(@x)].min
+    [@ground.level_at(@x + width), @ground.level_at(@x)].min
   end
 end
