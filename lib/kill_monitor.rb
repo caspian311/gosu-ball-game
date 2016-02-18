@@ -1,7 +1,4 @@
 class KillMonitor
-  def initialize
-  end
-
   def update(enemies, shots)
     enemies.each do |enemy|
       shots.each do |shot|

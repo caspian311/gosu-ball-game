@@ -2,6 +2,7 @@ require 'gosu'
 require_relative './position'
 
 class Player
+  include CollisionDetection
   include Position
 
   Size = 25
@@ -30,8 +31,8 @@ class Player
     width
   end
 
-  def current_position
-    return [@x + Size / 2, @y + Size / 2]
+  def firing_position
+    Point.new bottom_right.x, top_right.y + height / 2
   end
 
   def go_left

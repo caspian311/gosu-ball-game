@@ -8,10 +8,10 @@ class Shot
   Length = 30
   Height = 5
 
-  def initialize(x, y)
-    @x = x
-    @initial_x = x
-    @y = y
+  def initialize(point)
+    @x = point.x
+    @initial_x = point.x
+    @y = point.y
     @hit = false
   end
 

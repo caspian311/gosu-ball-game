@@ -1,8 +1,6 @@
 require_relative './player'
 
 class Enemy < Player
-  include CollisionDetection
-
   OffscreenBuffer = 5
 
   attr_accessor :dying, :dead
