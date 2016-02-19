@@ -15,6 +15,7 @@ class GameWindow < Gosu::Window
     @shots = Shots.new @player
 
     @kill_monitor = KillMonitor.new
+    @score_board = ScoreBoard.new(self, @kill_monitor)
   end
 
   def update
@@ -38,6 +39,7 @@ class GameWindow < Gosu::Window
     @player.draw
     @enemies.draw
     @shots.draw
+    @score_board.draw
   end
 
   private
