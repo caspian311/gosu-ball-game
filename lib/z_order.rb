@@ -4,4 +4,5 @@ module ZOrder
   Shadow = 3
   Player = 4
   Shot = 5
+  ScoreBoard = 5
 end
