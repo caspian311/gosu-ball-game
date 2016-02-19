@@ -67,7 +67,7 @@ class Player
 
   def draw
     unless dying?
-      draw_player_image
+      Media::Player.draw @x, @y, ZOrder::Player, 1, 1, color
       Media::PlayerShadow.draw @x, y_min + ShadowOffset, ZOrder::Shadow
     else
       @explostion.draw
@@ -76,17 +76,13 @@ class Player
 
   def kill
     @dying = true
-    @explostion = Explosion.new Media::DeathAnimation, Media::EnemyDeath, x, y
+    @explostion = Explosion.new Media::DeathAnimation, Media::EnemyDeath, x, y, color
   end
 
   private
 
   def play_jumping_sound
     Media::Boink.play
-  end
-
-  def draw_player_image
-    Media::Player.draw @x, @y, ZOrder::Player
   end
 
   def update_x
@@ -128,5 +124,9 @@ class Player
 
   def y_min
     [@ground.level_at(@x + width), @ground.level_at(@x)].min
+  end
+
+  def color
+    Gosu::Color::BLUE
   end
 end

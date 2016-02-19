@@ -1,10 +1,13 @@
 class Explosion
   FRAME_DELAY = 50
 
-  def initialize(animation, sound, x, y)
+  attr_accessor :color
+
+  def initialize(animation, sound, x, y, color)
     @animation = animation
     @x, @y = x, y
     @current_frame = 0
+    @color = color
     sound.play
   end
 
@@ -18,7 +21,7 @@ class Explosion
     image.draw(
       @x,
       @y,
-      ZOrder::Player, 1, 1, Gosu::Color::RED)
+      ZOrder::Player, 1, 1, color)
   end
 
   def done?
