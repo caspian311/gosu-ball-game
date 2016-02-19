@@ -21,4 +21,12 @@ class ScoreBoard
   def draw
     image.draw(top_left.x, top_left.y, ZOrder::ScoreBoard) 
   end
+
+  def width
+    image == nil ? 0 : image.width
+  end
+
+  def height
+    image == nil ? 0 : image.height
+  end
 end
