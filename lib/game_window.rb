@@ -23,13 +23,14 @@ class GameWindow < Gosu::Window
       @player.go_left if left_pressed?
       @player.go_right if right_pressed?
       @player.jump if jump_pressed?
-      @enemies.update
       @shots.shoot if shoot_pressed?
 
+      @enemies.update
       @player.update
       @shots.update
 
       @kill_monitor.update @enemies, @shots, @player
+      @score_board.update
     end
   end
 
