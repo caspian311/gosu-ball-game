@@ -18,5 +18,9 @@ class Enemy < Player
   def play_jumping_sound
     Media::EnemyBoink.play
   end
+
+  def death_sound
+    Media::EnemyDeath
+  end
 end
 

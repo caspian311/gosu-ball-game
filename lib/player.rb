@@ -76,10 +76,14 @@ class Player
 
   def kill
     @dying = true
-    @explostion = Explosion.new Media::DeathAnimation, Media::EnemyDeath, x, y, color
+    @explostion = Explosion.new Media::DeathAnimation, death_sound, x, y, color
   end
 
   private
+
+  def death_sound
+    Media::PlayerDeath
+  end
 
   def play_jumping_sound
     Media::Boink.play
