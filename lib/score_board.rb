@@ -19,7 +19,7 @@ class ScoreBoard
   end
 
   def draw
-    image.draw(top_left.x, top_left.y, ZOrder::ScoreBoard) 
+    image.draw(top_left.x, top_left.y, ZOrder::ScoreBoard) if image
   end
 
   def width

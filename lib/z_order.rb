@@ -5,4 +5,6 @@ module ZOrder
   Player = 4
   Shot = 5
   ScoreBoard = 5
+  GameOverBackground = 100
+  GameOverText = 101
 end
