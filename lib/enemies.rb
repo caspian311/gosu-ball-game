@@ -1,7 +1,7 @@
 class Enemies
   attr_reader :all_the_baddies, :ground
 
-  MinimumBaddies = 30
+  MinimumBaddies = 20
   SecondBetweenBaddieSpawns = 0.5
 
   def initialize(ground)
@@ -44,6 +44,10 @@ class Enemies
 
   def create_enemy
     @last_time_enemy_was_created = Time.now
-    Enemy.new(Consts::WindowWidth - Player::Size, 0, ground) 
+    Enemy.new(Consts::WindowWidth - Player::Size, 0, ground, random_speed) 
+  end
+
+  def random_speed
+    Random.new.rand(5) + 1
   end
 end

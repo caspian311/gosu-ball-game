@@ -41,11 +41,15 @@ class Player
   end
 
   def go_left
-    @x_velocity -= 0.1 if @x_velocity > -MaxSpeed
+    @x_velocity -= 0.1 if @x_velocity > -max_speed
   end
 
   def go_right
-    @x_velocity += 0.1 if @x_velocity > -MaxSpeed
+    @x_velocity += 0.1 if @x_velocity > -max_speed
+  end
+
+  def max_speed
+    MaxSpeed
   end
 
   def jump
