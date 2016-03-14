@@ -3,7 +3,7 @@ class Shots
   attr_reader :shots
 
   ShotSpeed = 5
-  DistanceBeforeShootingAgain = 100
+  DistanceBeforeShootingAgain = 125
 
   def initialize(player)
     @shots = []
